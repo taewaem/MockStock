@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8; /* 배경색 */
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: #6699ff; /* 상단 배경색 */
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 2.5em; /* 헤더 글씨 크기 조정 */
+        }
+        h2 {
+            margin-top: 20px; /* 상단 여백 */
+            margin-left: 150px; /* 왼쪽 여백 */
+            margin-bottom: 20px; /* 하단 여백 */
+            position: relative;
+        }
+        .term-container {
+            max-width: 1200px; /* 최대 너비 설정 */
+            margin: 20px auto; /* 중앙 정렬 */
+            padding: 20px;
+            background: white; /* 배경색 */
+            border-radius: 10px; /* 모서리 둥글게 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 */
+        }
+
+        .term {
+            display: block; /* 블록 형태로 변경 */
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+            border-bottom: 1px solid #e9ecef; /* 하단 경계선 */
+            transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+        }
+
+        .term:last-child {
+            border-bottom: none; /* 마지막 항목은 경계선 제거 */
+        }
+
+        .term:hover {
+            background-color: #f1f1f1; /* 호버 시 배경색 */
+        }
+
+        .description {
+            display: none;
+            margin-top: 5px;
+            padding: 10px;
+            background-color: #f8f9fa; /* 설명 배경색 */
+            border: 1px solid #ced4da; /* 설명 테두리 */
+            border-radius: 5px; /* 모서리 둥글게 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 */
+        }
+    </style>
+    <title>기초 용어</title>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" style="text-decoration: none; color: white;">
+        <h1>모의 주식</h1>
+    </a>
+</div>
+
+<h2>📘주린이를 위한 기초 주식 용어📘</h2>
+
+<div class="term-container">
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('코스피')">코스피</span>
+            <p id="코스피" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('코스닥')">코스닥</span>
+            <p id="코스닥" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('시가총액(시총)')">시가총액(시총)</span>
+            <p id="시가총액(시총)" class="description"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('거래량')">거래량</span>
+            <p id="거래량" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('시가')">시가</span>
+            <p id="시가" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('종가')">종가</span>
+            <p id="종가" class="description"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('호가')">호가</span>
+            <p id="호가" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('동시호가')">동시호가</span>
+            <p id="동시호가" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('상한가')">상한가</span>
+            <p id="상한가" class="description"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('하한가')">하한가</span>
+            <p id="하한가" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('보합(No Charge)')">보합(No Charge)</span>
+            <p id="보합(No Charge)" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('강보합')">강보합</span>
+            <p id="강보합" class="description"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('약보합')">약보합</span>
+            <p id="약보합" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('예수금')">예수금</span>
+            <p id="예수금" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('매수')">매수</span>
+            <p id="매수" class="description"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('매도')">매도</span>
+            <p id="매도" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('체결')">체결</span>
+            <p id="체결" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('증거금')">증거금</span>
+            <p id="증거금" class="description"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('미수금')">미수금</span>
+            <p id="미수금" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('보통주')">보통주</span>
+            <p id="보통주" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('우선주')">우선주</span>
+            <p id="우선주" class="description"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('지정가')">지정가</span>
+            <p id="지정가" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('시장가')">시장가</span>
+            <p id="시장가" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('PER')">PER</span>
+            <p id="PER" class="description"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('PBR')">PBR</span>
+            <p id="PBR" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('ROE')">ROE</span>
+            <p id="ROE" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('BPS')">BPS</span>
+            <p id="BPS" class="description"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('급락주')">급락주</span>
+            <p id="급락주" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('급등주')">급등주</span>
+            <p id="급등주" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('테마주')">테마주</span>
+            <p id="테마주" class="description"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('익절')">익절</span>
+            <p id="익절" class="description"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="term" onclick="showTermDescription('손절')">손절</span>
+            <p id="손절" class="description"></p>
+        </div>
+    </div>
+</div>
+
+<script src="/js/stockTerm.js"></script>
+</body>
+</html>

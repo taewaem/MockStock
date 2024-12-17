@@ -1,0 +1,245 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> &lt;!&ndash; jQuery 라이브러리 &ndash;&gt;-->
+<!--    <script src="/js/stockInfo.js"></script>-->
+<!--    <title>주식 종목</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <div class="table-responsive">-->
+<!--        <h4 style="text-align:center;" >stockName</h4>-->
+<!--        <table style="text-align:center; padding-left:5%;" class="table table-bordered" id="stock_info_table">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>산업 분류</th>-->
+<!--                <th>업종</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            &lt;!&ndash; 종목 정보가 여기에 추가됨 &ndash;&gt;-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; 매수, 매도 버튼 추가 &ndash;&gt;-->
+<!--    <div style="text-align:center; margin-top:20px;">-->
+<!--        <button id="buyBtn" class="btn btn-success">매수</button>-->
+<!--        <button id="sellBtn" class="btn btn-danger">매도</button>-->
+<!--    </div>-->
+
+
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--&lt;!&ndash;$(document).ready(function() {&ndash;&gt;-->
+<!--&lt;!&ndash;// 매수 버튼 클릭 이벤트&ndash;&gt;-->
+<!--&lt;!&ndash;$('#buyBtn').click(function() {&ndash;&gt;-->
+<!--&lt;!&ndash;var stockId = $(this).data('stock-id'); // 주식 ID 가져오기&ndash;&gt;-->
+<!--&lt;!&ndash;console.log(stockId);&ndash;&gt;-->
+<!--&lt;!&ndash;window.location.href = '/buyStock/' + stockId; // 주식 ID 사용&ndash;&gt;-->
+<!--&lt;!&ndash;});&ndash;&gt;-->
+
+<!--&lt;!&ndash;// 매도 버튼 클릭 이벤트&ndash;&gt;-->
+<!--&lt;!&ndash;$('#sellBtn').click(function() {&ndash;&gt;-->
+<!--&lt;!&ndash;var stockId = $(this).data('stock-id'); // 주식 ID 가져오기&ndash;&gt;-->
+<!--&lt;!&ndash;console.log(stockId);&ndash;&gt;-->
+<!--&lt;!&ndash;window.location.href = '/sellStock/' + stockId; // 주식 ID 사용&ndash;&gt;-->
+<!--&lt;!&ndash;});&ndash;&gt;-->
+<!--&lt;!&ndash;});&ndash;&gt;-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 라이브러리 -->
+    <script src="/js/stockInfo.js"></script>  <!-- 자바스크립트 파일 -->
+    <title>주식 종목</title>
+    <style>
+        .header {
+    background-color: #6699ff; /* 상단 배경색 */
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-size: 2.5em; /* 헤더 글씨 크기 조정 */
+    }
+        .btn-buy {
+        background-color: #ff0000; /* 빨간색 */
+        border-color: #ff0000;
+        color: white;
+    }
+
+    .btn-sell {
+        background-color: #007bff; /* 파란색 */
+        border-color: #007bff;
+        color: white;
+    }
+        .stockPriceDisplay {
+    background-color: #f8f9fa; /* 배경색 */
+    border: 1px solid #ced4da; /* 테두리 색상 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 15px; /* 여백 */
+    display: inline-block; /* inline-block으로 표시 */
+}
+
+    </style>
+</head>
+
+<body>
+<div class="header">
+    <a th:href="@{/}" style="text-decoration: none; color: white;">
+        <h1>모의 주식</h1>
+    </a>
+</div>
+
+<div class="container">
+    <div class="table-responsive">
+        <h4 th:id="stockName" style="text-align:center; margin-top: 20px;">주식 정보</h4>
+
+        <div id="stockPriceDisplay" style="text-align:center; margin-top: 20px; font-size: 1.5em; color: black;">
+            <strong>현재 가격: </strong><span th:text="${#numbers.formatInteger(stock.stockPrice, 0, 'COMMA') + '원'}"></span>
+        </div>
+
+        <table style="text-align:center; padding-left:5%;" class="table table-bordered" id="stock_info_table">
+            <thead>
+            <tr>
+                <th>산업 분류</th>
+                <th>업종</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- 종목 정보가 여기에 추가됨 -->
+            </tbody>
+        </table>
+        <table style="text-align:center; padding-left:5%;" class="table table-bordered" id="price_info_table">
+            <thead>
+            <tr>
+                <th>누적 거래량</th>
+                <th>시가총액</th>
+                <th>52주 최고가</th>
+                <th>52주 최저가</th>
+                <th>per</th>
+                <th>pbr</th>
+                <th>자본금</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- 종목 정보가 여기에 추가됨 -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 매수, 매도 버튼 -->
+    <div style="text-align:center; margin-top:20px;">
+        <button id="buyBtn" class="btn btn-buy">매수</button>
+        <button id="sellBtn" class="btn btn-sell">매도</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // URL에서 주식 ID 추출
+        const stockId = window.location.pathname.split('/').pop(); // 경로의 마지막 부분 가져오기
+
+        // 페이지 로드 시 주식 정보 가져오기
+        getStockInfo(stockId);
+        getPriceInfo(stockId);
+
+        // 매수 버튼 클릭 이벤트
+        $('#buyBtn').click(function() {
+            var stockId = $(this).data('stock-id'); // 주식 ID 가져오기
+            console.log("매수할 주식 ID:", stockId);
+            window.location.href = '/buyStock/' + stockId; // 매수 페이지로 이동
+        });
+
+        // 매도 버튼 클릭 이벤트
+        $('#sellBtn').click(function() {
+            var stockId = $(this).data('stock-id'); // 주식 ID 가져오기
+            console.log("매도할 주식 ID:", stockId);
+            window.location.href = '/sellStock/' + stockId; // 매도 페이지로 이동
+        });
+    });
+
+    // 주식 ID를 사용하여 주식 정보 가져오기
+    function getStockInfo(stockId) {
+        $.ajax({
+            url: '/stockInfoApi',
+            method: 'GET',
+            data: {
+                stockId: stockId  // 주식 ID 전달
+            },
+            success: function(data) {
+                console.log(data);
+                if (data.rt_cd === '0') {
+                    let stock_info_data = "";
+                    let output = data.output;
+
+<!--                    $("#stockName").text(output.prdt_name);-->
+                    $("#stockName").text(output.prdt_abrv_name);
+
+                    stock_info_data += "<tr>";
+                    stock_info_data += "<td>" + output.std_idst_clsf_cd_name + "</td>";  // 산업 분류
+                    stock_info_data += "<td>" + output.idx_bztp_mcls_cd_name + "</td>";  // 업종
+                    stock_info_data += "</tr>";
+
+                    // 주식 정보를 테이블에 추가
+                    $("#stock_info_table tbody").empty().append(stock_info_data);  // 기존 데이터 지우고 새로운 데이터 추가
+
+                    // 매수/매도 버튼에 주식 ID 설정
+                    $('#buyBtn').data('stock-id', output.pdno.substring(output.pdno.length - 6));
+                    $('#sellBtn').data('stock-id', output.pdno.substring(output.pdno.length - 6));
+                } else {
+                    console.log("정보를 불러올 수 없습니다.");
+                }
+            },
+            error: function() {
+                console.error("AJAX 요청 실패:");
+            }
+        });
+    }
+
+function formatNumberWithCommas(value) {
+    return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function getPriceInfo(stockId) {
+    $.ajax({
+        url: '/curPriceApi',
+        method: 'GET',
+        async: false,
+        data: {
+            stockId: stockId  // 주식 ID 전달
+        },
+        success: function(data) {
+            console.log(data);
+            let price_info_data = "";
+            let output = data.output;
+
+            price_info_data += "<tr>";
+            price_info_data += "<td>" + formatNumberWithCommas(output.acml_vol) + "</td>";  // 누적 거래량
+            price_info_data += "<td>" + formatNumberWithCommas(output.hts_avls) + "억" + "</td>";  // 시가총액
+            price_info_data += "<td>" + formatNumberWithCommas(output.w52_hgpr) + "원" + "</td>";  // 52주 최고가
+            price_info_data += "<td>" + formatNumberWithCommas(output.w52_lwpr) + "원" + "</td>";  // 52주 최저가
+            price_info_data += "<td>" + formatNumberWithCommas(output.per) + "배" + "</td>";       // PER
+            price_info_data += "<td>" + formatNumberWithCommas(output.pbr) + "배" + "</td>";       // PBR
+            price_info_data += "<td>" + formatNumberWithCommas(output.cpfn) + "억" + "</td>";      // 자본금
+            price_info_data += "</tr>";
+
+            // 주식 정보를 테이블에 추가
+            $("#price_info_table tbody").empty().append(price_info_data);  // 기존 내용 삭제 후 추가
+        },
+        error: function() {
+            console.error("AJAX 요청 실패:");
+        }
+    });
+}
+
+</script>
+</body>
+</html>

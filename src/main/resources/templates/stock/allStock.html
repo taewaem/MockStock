@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>모의 주식</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+        }
+
+        .header {
+            background-color: #6699ff; /* 상단 배경색 */
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 2.5em; /* 헤더 글씨 크기 조정 */
+        }
+
+        /* 전체 컨테이너 */
+        .container-fluid {
+            padding: 0 15px; /* Bootstrap 기본 여백 */
+            width: 100%;
+        }
+
+        /* 왼쪽 주식 리스트 */
+        .stock-list {
+            width: 100%;
+            margin: 0 auto; /* 가운데 정렬 */
+            padding: 20px;
+            gap: 8px; /* 원하는 만큼 박스 사이 간격 */
+
+        }
+
+        /* 주식 항목 */
+        .stock-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content:  flex-start;
+        }
+
+        .stock-item {
+            width: 230px; /* 너비 고정 */
+            min-height: 150px; /* 높이 고정 (원하는 값으로 조정) */
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            position: relative;
+            cursor: pointer; /* 포인터 커서 추가 */
+            box-sizing: border-box; /* 패딩과 보더 포함한 크기 계산 */
+            margin-bottom: 0; /* 요소 간 간격 제거 */
+        }
+
+        .stock-item h5 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .stock-item .stock-code {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .stock-item .stock-price {
+            font-size: 17px;
+            font-weight: bold;
+            color: #333; /* 기본 색상 */
+            margin-bottom: 5px;
+        }
+
+        .stock-item .stock-rate {
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .stock-price .positive {
+            color: #f44336; /* 빨간색 */
+        }
+
+        .stock-price .negative {
+            color: #2196f3; /* 파란색 */
+        }
+
+        .stock-price .basic {
+            color: #333; /* 검은색 */
+        }
+
+        .stock-rate .positive {
+            color: #f44336; /* 빨간색 */
+        }
+
+        .stock-rate .negative {
+            color: #2196f3; /* 파란색 */
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" style="text-decoration: none; color: white;">
+        <h1>모의 주식</h1>
+    </a>
+</div>
+
+<div class="container-fluid">
+    <div class="stock-list">
+        <h2 style="margin-top: 20px;">📈전체 종목 조회📈</h2>
+        <div class="stock-container" th:if="${stocks != null}">
+            <div class="stock-item" th:each="stock : ${stocks}" th:data-stock-id="${stock.stockId}">
+                <p class="stock-code" th:text="${stock.stockId} + ' ' + ${stock.marketCode}"></p>
+                <h5 th:text="${stock.stockName}">삼성전자</h5>
+                <div class="stock-price">
+                        <span class="stock-price"
+                              th:class="${stock.rate.startsWith('-') ? 'negative' : (stock.rate.startsWith('0') ? 'basic' : 'positive')}"
+                              th:text="${#numbers.formatInteger(stock.stockPrice, 0, 'COMMA') + '원'}"></span>
+                    <span class="stock-rate"
+                          th:class="${stock.rate.startsWith('-') ? 'negative' : (stock.rate.startsWith('0') ? 'basic' : 'positive')}"
+                          th:text="${stock.rate.startsWith('-') ? '▼' : (stock.rate.startsWith('0') ? '' : '▲')}  + ${#numbers.formatInteger(stock.changes, 0, 'COMMA')} + ' (' + ${stock.rate} + '%)'"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.stock-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const stockId = this.getAttribute('data-stock-id'); // data-stock-id에서 stockId 가져오기
+                console.log("Clicked stockId:", stockId); // 확인용 로그
+
+                 // 새로운 form 생성
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/stockInfo/' + stockId; // URL 구성
+
+                // stockId를 hidden input으로 추가
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'stockId';
+                input.value = stockId;
+                form.appendChild(input);
+
+                // 문서에 form 추가 후 제출
+                document.body.appendChild(form);
+                form.submit(); // 해당 form 제출
+         });
+     });
+});
+</script>
+

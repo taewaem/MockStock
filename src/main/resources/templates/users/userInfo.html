@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 라이브러리 -->
+    <script src="/js/stockInfo.js"></script>  <!-- 자바스크립트 파일 -->
+    <title>유저 정보</title>
+    <style>
+        .header {
+            background-color: #6699ff; /* 상단 배경색 */
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 2.5em; /* 헤더 글씨 크기 조정 */
+        }
+        .stock-card {
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .stock-name {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .stock-detail {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .stock-detail-left,
+        .stock-detail-center,
+        .stock-detail-right {
+            display: flex;
+            flex-direction: column; /* 수직 정렬 */
+        }
+        .blue {
+            color: blue;
+        }
+        .red {
+            color: red;
+        }
+        .black {
+            color: black;
+        }
+        .box {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 그림자 효과 */
+        }
+                .ranking, .quiz {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 그림자 효과 */
+            text-align: center;
+        }
+
+        .user-ranking {
+    margin-bottom: 10px; /* 유저 랭킹 사이 간격 */
+    text-align: left;
+}
+
+.user-rank, .user-name {
+    margin-left: 5px;
+    font-size: 1.0em; /* 글자 크기 조정 */
+}
+
+.user-money {
+    font-size: 1.2em; /* 돈 텍스트 크기 */
+    margin-left: 20px; /* 이름과의 간격 */
+}
+    </style>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" style="text-decoration: none; color: white;">
+        <h1>모의 주식</h1>
+    </a>
+</div>
+<div class ="row">
+    <div class="col-md-9">
+        <h3 style="margin-top: 20px;">📈보유 종목📈</h3>
+        <div th:if="${userStocks != null}">
+            <div th:each="userStock : ${userStocks}" class="stock-card"
+                 th:data-stock-id="${userStock.stock.stockId}"
+                 style="cursor: pointer;"
+                 onclick="navigateToStockInfo(this)">
+                <!-- 종목 이름 -->
+                <div class="stock-name" th:text="${userStock.stock.stockName}">종목 이름</div>
+                <!-- 주식 상세 정보 -->
+                <div class="stock-detail">
+                    <div class="stock-detail-left">
+                        <div>순수익: <span th:class="${(userStock.profitAndLoss < 0) ? 'blue' : ((userStock.profitAndLoss > 0) ? 'red' : 'black')}"
+                                        th:text="${#numbers.formatInteger(userStock.profitAndLoss, 0, 'COMMA')} + '원'">0원</span></div>
+
+                        <div>수익률: <span th:class="${userStock.profitAndLoss < 0 ? 'blue' : ((userStock.profitAndLoss > 0) ? 'red' : 'black')}"
+                                        th:text="${userStock.profitAndLossRate == 0 ? '0%' : #numbers.formatDecimal(userStock.profitAndLossRate, 0, 2) + '%'}">0%</span></div>
+                    </div>
+                    <div class="stock-detail-center">
+                        <div>보유수량: <span th:text="${userStock.count}">0주</span></div>
+                        <div>평가금액: <span th:class="${userStock.profitAndLoss < 0 ? 'blue' : ((userStock.profitAndLoss > 0) ? 'red' : 'black')}"
+                                         th:text="${#numbers.formatInteger(userStock.currentTotalPrice, 0, 'COMMA')} + '원'">0원</span></div>
+
+                    </div>
+                    <div class="stock-detail-right">
+                        <div>평균단가: <span th:text="${#numbers.formatInteger(userStock.averagePrice, 0, 'COMMA')} + '원'">0원</span></div>
+                        <div>현재가: <span th:class="${userStock.profitAndLoss < 0 ? 'blue' : ((userStock.profitAndLoss > 0) ? 'red' : 'black')}"
+                                        th:text="${#numbers.formatInteger(userStock.stock.stockPrice, 0, 'COMMA')} + '원'">0원</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 오른쪽 영역: 로그인 및 기타 위젯 -->
+    <div style="margin-top: 20px;" class="col-md-3">
+        <div class="box">
+            <h3 style=" text-align: center; margin-top; 20px;" th:text="|${user.userName}님|">로그인 사용자 이름</h3>
+            <div style="text-align: center;">
+                <h5 style="font-size: 1.0em; margin: 0;" th:text="'보유 현금:  ' + ${#numbers.formatInteger(( (user.money != null) ? user.money : 0), 0, 'COMMA') + '원'}"><strong>보유 현금</strong></h5>
+                <h5 style="font-size: 1.0em; margin-top: 2px;" th:text="'평가 금액:  ' + ${#numbers.formatInteger(( (user.stockMoney != null) ? user.stockMoney : 0), 0, 'COMMA') + '원'}"><strong>평가 금액</strong></h5>
+            </div>
+            <form th:action="@{/userStock/bankrupt}" method="post">
+                <button class="w-100 btn btn-secondary btn-lg" type="submit">파산</button>
+            </form>
+        </div>
+
+        <div class="quiz">
+            <h5>🏆유저 랭킹🏆</h5>
+            <div th:each="user, iterStat : ${userList}" class="user-ranking">
+                <div>
+                    <span class="user-rank" th:text="${iterStat.index + 1} + '위 '">순위</span>
+                    <span class="user-name" th:text="${user.userName}">유저네임</span>
+                </div>
+                <div class="user-money" th:text="${#numbers.formatInteger((user.money != null ? user.money : 0) + (user.stockMoney != null ? user.stockMoney : 0), 0, 'COMMA')} + ' 원'">유저돈</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:if="${userStocks == null or #lists.isEmpty(userStocks)}">
+    <h4 style="margin: 50px;">보유한 종목이 없습니다.</h4>
+</div>
+<script>
+    function navigateToStockInfo(element) {
+        const stockId = element.getAttribute("data-stock-id");
+        location.href = `/stockInfo/${stockId}`;
+    }
+</script>
+</body>
+</html>

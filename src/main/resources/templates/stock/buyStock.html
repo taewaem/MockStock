@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}"
+          href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>주식 매수</title>
+    <style>
+
+        .container {
+            max-width: 560px;
+        }
+        .field-error {
+            border-color: #ff0000;
+            color: #ff0000;
+        }
+        .custom-btn-red {
+        background-color: #ff0000; /* 빨간색 배경 */
+        color: #ffffff;            /* 흰색 텍스트 */
+        border-color: #ff0000;     /* 빨간색 테두리 */
+        }
+                .header {
+            background-color: #6699ff; /* 상단 배경색 */
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 2.5em; /* 헤더 글씨 크기 조정 */
+        }
+    </style>
+</head>
+
+<body>
+<div class="header">
+    <a th:href="@{/}" style="text-decoration: none; color: white;">
+        <h1>모의 주식</h1>
+    </a>
+</div>
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>주식 매수</h2>
+    </div>
+    <h4 class="mb-3">주식 정보 입력</h4>
+    <form th:action="@{/buyStock/{stockId}(stockId=${stock.stockId})}" th:method="post" th:object="${stock}">
+        <div class="mb-3">
+            <label th:for="stockName">종목 이름</label>
+            <input th:type="text" th:id="stockName" th:field="*{stockName}" class="form-control" readonly>
+        </div>
+        <div class="mb-3">
+            <label th:for="stockPrice">현재 가격</label>
+            <input th:type="text" th:id="stockPrice" th:field="*{stockPrice}" th:value="${#numbers.formatInteger(stock.stockPrice, 0, 'COMMA') + '원'}" class="form-control" readonly>
+        </div>
+        <div class="mb-3">
+            <label th:for="maxCount">구매 가능 수량</label>
+            <input th:type="number" th:id="maxCount" th:value="${userMoney}" class="form-control"  readonly>
+        </div>
+        <div class="mb-3">
+            <label th:for="count">매수 수량</label>
+            <input th:type="number" th:id="count" th:name="count" class="form-control" required>
+        </div>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn custom-btn-red btn-lg" type="submit">매수</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        th:onclick="|location.href='@{/stockInfo/{stockId}(stockId=${stock.stockId})}'|" type="button">취소</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

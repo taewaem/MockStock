@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>주식 투자 웹사이트</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* 페이지 전체 배경 */
+        }
+
+        .header {
+            background-color: #6699ff; /* 상단 배경색 */
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 2.5em; /* 헤더 글씨 크기 조정 */
+        }
+
+        .row {
+            margin-left: 4%; /* 왼쪽 여백 */
+            margin-right: 4%; /* 왼쪽 여백 */
+        }
+
+        .stock-table th, .stock-table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .ranking, .quiz {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 그림자 효과 */
+        }
+                .user-ranking {
+    margin-bottom: 10px; /* 유저 랭킹 사이 간격 */
+    text-align: left;
+}
+
+.user-rank, .user-name {
+    margin-left: 5px;
+    font-size: 0.9em; /* 글자 크기 조정 */
+}
+
+.user-money {
+    font-size: 1.1em; /* 돈 텍스트 크기 */
+    margin-left: 20px; /* 이름과의 간격 */
+}
+
+        .login {
+            color: black;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .stock-row {
+    display: flex;
+    justify-content: space-between; /* 가로로 나열 */
+    align-items: center; /* 세로 중앙 정렬 */
+    border: 1px solid #ced4da; /* 테두리 추가 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 10px; /* 내부 여백 */
+    margin-bottom: 5px; /* 상자 간 여백 */
+}
+
+.stock-name {
+    flex: 1; /* 주식 이름은 유동적으로 공간 차지 */
+    font-size: 1em; /* 주식 이름 크기 */
+}
+
+.stock-price {
+    flex: 1; /* 가격은 유동적으로 공간 차지 */
+    font-size: 1em; /* 가격 크기 */
+    font-weight: bold; /* 가격 두껍게 표시 */
+}
+
+.stock-rate {
+    flex: 1; /* 변화율은 유동적으로 공간 차지 */
+    font-size: 1em; /* 변화율 크기 */
+    text-align: right; /* 오른쪽 정렬 */
+}
+
+        .blue {
+            color: blue;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .black {
+            color: black;
+        }
+
+        /* 버튼 글씨 크기 조정 */
+        .btn {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>모의 주식</h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <!-- 왼쪽 영역: 주식 표 및 랭킹 -->
+        <div class="col-md-5">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h5 style="margin-top: 20px;">🏆거래량 순위🏆</h5>
+                <span style="font-size: 0.8em; margin-top: 20px; color: gray;">거래량 상위 10</span>
+            </div>
+            <table style="text-align:center;" class="table table-bordered stock-table" id="volume_rank_table">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>종목명</th>
+                    <th>현재가</th>
+                    <th>대비</th>
+                    <th>등락률</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <script src="/js/volumeRank.js"></script>
+        </div>
+        <!-- 가운데 영역: 전체 주식 종목 조회-->
+        <div class="col-md-5">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h5 style="margin-top: 20px;">📈전체 종목📈</h5>
+                <span style="font-size: 0.8em; color: gray; cursor: pointer; margin-top: 20px;" th:onclick="|location.href='@{/all_stock}'|">더보기</span>
+            </div>
+            <div class="stock-container" th:if="${stocks != null}" style="padding: 0;">
+                <div class="d-flex flex-column">
+                    <div th:each="stock : ${stocks}" class="stock-row">
+                        <span class="stock-name" th:text="${stock.stockName}">종목 이름</span>
+                        <span class="stock-price"
+                              th:class="${stock.rate.startsWith('-') ? 'blue' : (stock.rate.startsWith('0') ? 'black' : 'red')}"
+                              th:text="${#numbers.formatInteger(stock.stockPrice, 0, 'COMMA') + '원' + ' '}"></span>
+                        <span class="stock-rate"
+                              th:class="${stock.rate.startsWith('-') ? 'blue' : (stock.rate.startsWith('0') ? 'black' : 'red')}"
+                              th:text="${stock.rate.startsWith('-') ? '▼ ' : (stock.rate.startsWith('0') ? '' : '▲ ')} + ${#numbers.formatInteger(stock.changes, 0, 'COMMA')} + ' (' + ${stock.rate} + '%)'"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 오른쪽 영역: 로그인 및 기타 위젯 -->
+        <div class="col-md-2">
+            <div class="login">
+                <h3 style="margin-top; 20px;" th:text="|${user.userName}님|">로그인 사용자 이름</h3>
+                    <button class="w-100 btn btn-primary btn-lg" type="button"
+                            th:onclick="|location.href='@{/user/{userId}(userId=${user.id})}'|">
+                        나의 주식
+                    </button>
+                <form th:action="@{logout}" method="post">
+                    <button class="w-100 btn btn-secondary btn-lg" type="submit">로그아웃</button>
+                </form>
+                <form th:action="@{/userStock/bankrupt}" method="post">
+                    <button class="w-100 btn btn-secondary btn-lg" type="submit">파산</button>
+                </form>
+            </div>
+            <div style="text-align: center;">
+                <h5 style="font-size: 1.0em; margin: 0; cursor: pointer;" th:onclick="|location.href='@{/stockTerm}'|" ><strong>주린이를 위한 기초 용어 🔼</strong></h5>
+            </div>
+            <div class="quiz">
+                <h5>🏆유저 랭킹🏆</h5>
+                <div th:each="user, iterStat : ${userList}" class="user-ranking">
+                    <div>
+                        <span class="user-rank" th:text="${iterStat.index + 1} + '위 '">순위</span>
+                        <span class="user-name" th:text="${user.userName}">유저네임</span>
+                    </div>
+                    <div class="user-money" th:text="${#numbers.formatInteger((user.money != null ? user.money : 0) + (user.stockMoney != null ? user.stockMoney : 0), 0, 'COMMA')} + ' 원'">유저돈</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
