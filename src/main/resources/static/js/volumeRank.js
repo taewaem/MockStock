@@ -6,8 +6,6 @@ function getVolumeRank() {
         success: function(data) {
             // 응답에서 필요한 데이터를 추출
             console.log(data)
-
-
         }
     });
 }

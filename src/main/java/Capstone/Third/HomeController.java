@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Controller
 @Slf4j
-public class HomeController {
+public class    HomeController {
 
     private final StockRepository stockRepository;
     private final UserRepository userRepository;
