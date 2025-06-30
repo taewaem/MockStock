@@ -14,20 +14,6 @@
 - **Build Tool**: Gradle
 - **External APIs**: KIS API, KRX API
 
-## 🏗 프로젝트 구조
-
-src/main/java/Capstone/Third/
-├── api/                    외부 API 연동
-│   ├── kis/                한국투자증권 API
-│   └── krx/                한국거래소 API
-├── user/                   사용자 관리
-├── stock/                  주식 정보 관리
-├── interest/               관심종목 관리
-├── userStock/              사용자-주식 연관 관리
-├── term/                   금융용어 관리
-└── ThirdApplication.java   메인 애플리케이션
-
-
 ## 📦 주요 기능
 ### 1. 사용자 관리
 - 회원가입 및 로그인
