@@ -35,22 +35,16 @@
 ## 📱 주요 화면
 
 ### 대시보드
-- 관심목록, 내 자산현황, 거래량순위, 추천주식, 유저랭킹을 한눈에 확인
+<img width="1907" height="888" alt="Image" src="https://github.com/user-attachments/assets/e12958a2-3049-40cb-90aa-9f7c922a4fc5" />
 
 ### 주식 목록  
-- 페이지네이션으로 전체 주식 조회
-- 검색 기능 및 정렬 옵션
-- 관심목록 추가/삭제
-
-### 주식 상세
-- 실시간 주가 차트 (모의 데이터)
-- 매수/매도 거래 패널
-- 관심목록 등록
+<img width="1899" height="909" alt="Image" src="https://github.com/user-attachments/assets/90fd6a19-9c63-4aac-97c9-b0d8ff9bc320" />
+### 주식 검색
+<img width="1903" height="896" alt="Image" src="https://github.com/user-attachments/assets/1e8fdcf4-8a69-463a-b008-b3ffb26dd452" /도
+<img width="447" height="383" alt="Image" src="https://github.com/user-attachments/assets/c3a2ca79-6a4f-4047-955c-0e273fceb575" />
 
 ### 포트폴리오
-- 보유 주식 현황 및 수익률
-- 포트폴리오 구성 차트
-- 파산 신청 기능
+<img width="1434" height="626" alt="Image" src="https://github.com/user-attachments/assets/4b7e6221-382b-457f-9c3c-5d8c2d398b2e" />
 
 ## 주요 API 엔드포인트
 
