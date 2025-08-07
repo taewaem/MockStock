@@ -36,37 +36,37 @@
 <table align="center">
   <tr>
     <td align="center">
-      <img width="380" height="176" src="https://github.com/user-attachments/assets/e12958a2-3049-40cb-90aa-9f7c922a4fc5" />
+      <img width="380" src="https://github.com/user-attachments/assets/e12958a2-3049-40cb-90aa-9f7c922a4fc5" />
       <br><sub><b>대시보드</b></sub>
     </td>
     <td align="center">
-      <img width="380" height="182" src="https://github.com/user-attachments/assets/90fd6a19-9c63-4aac-97c9-b0d8ff9bc320" />
+      <img width="380" src="https://github.com/user-attachments/assets/90fd6a19-9c63-4aac-97c9-b0d8ff9bc320" />
       <br><sub><b>주식 목록</b></sub>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img width="380" height="179" src="https://github.com/user-attachments/assets/1e8fdcf4-8a69-463a-b008-b3ffb26dd452" />
+      <img width="380" src="https://github.com/user-attachments/assets/1e8fdcf4-8a69-463a-b008-b3ffb26dd452" />
       <br><sub><b>주식 검색</b></sub>
     </td>
     <td align="center">
-      <img width="280" height="238" src="https://github.com/user-attachments/assets/23ca4bc7-6b2a-41c2-910d-ed46612e5220" />
+      <img width="380" src="https://github.com/user-attachments/assets/23ca4bc7-6b2a-41c2-910d-ed46612e5220" />
       <br><sub><b>주식 상세</b></sub>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img width="220" height="197" src="https://github.com/user-attachments/assets/f2aa8e80-fe36-4f6d-9786-e5fd122d2a95" />
+      <img width="380" src="https://github.com/user-attachments/assets/f2aa8e80-fe36-4f6d-9786-e5fd122d2a95" />
       <br><sub><b>매수</b></sub>
     </td>
     <td align="center">
-      <img width="220" height="188" src="https://github.com/user-attachments/assets/4af0f24d-7dc9-4ed2-9e82-ace57602339c" />
+      <img width="380" src="https://github.com/user-attachments/assets/4af0f24d-7dc9-4ed2-9e82-ace57602339c" />
       <br><sub><b>매도</b></sub>
     </td>
   </tr>
   <tr>
     <td align="center" colspan="2">
-      <img width="550" height="240" src="https://github.com/user-attachments/assets/4b7e6221-382b-457f-9c3c-5d8c2d398b2e" />
+      <img width="550" src="https://github.com/user-attachments/assets/4b7e6221-382b-457f-9c3c-5d8c2d398b2e" />
       <br><sub><b>포트폴리오</b></sub>
     </td>
   </tr>
