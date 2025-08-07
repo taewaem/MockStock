@@ -36,23 +36,23 @@
 
 <table>
   <tr>
-    <td align="center"><strong>대시보드</strong><br><img src="https://github.com/user-attachments/assets/e12958a2-3049-40cb-90aa-9f7c922a4fc5" width="100%"></td>
+    <td align="center"><strong>대시보드</strong><br><img src="https://github.com/user-attachments/assets/e12958a2-3049-40cb-90aa-9f7c922a4fc5" width="700"></td>
   </tr>
     <tr>
-    <td align="center"><strong>주식 목록</strong><br><img src="https://github.com/user-attachments/assets/90fd6a19-9c63-4aac-97c9-b0d8ff9bc320" width="100%"></td>
+    <td align="center"><strong>주식 목록</strong><br><img src="https://github.com/user-attachments/assets/90fd6a19-9c63-4aac-97c9-b0d8ff9bc320" width="700"></td>
   </tr>
   <tr>
-    <td align="center"><strong>주식 검색</strong><br><img src="https://github.com/user-attachments/assets/1e8fdcf4-8a69-463a-b008-b3ffb26dd452" width="100%"></td>
+    <td align="center"><strong>주식 검색</strong><br><img src="https://github.com/user-attachments/assets/1e8fdcf4-8a69-463a-b008-b3ffb26dd452" width="700"></td>
   </tr>
     <tr>
-    <td align="center"><strong>주식 상세</strong><br><img src="https://github.com/user-attachments/assets/23ca4bc7-6b2a-41c2-910d-ed46612e5220" width="100%"></td>
+    <td align="center"><strong>주식 상세</strong><br><img src="https://github.com/user-attachments/assets/23ca4bc7-6b2a-41c2-910d-ed46612e5220" width="700"></td>
   </tr>
   <tr>
-    <td align="center"><strong>매수</strong><br><img src="https://github.com/user-attachments/assets/f2aa8e80-fe36-4f6d-9786-e5fd122d2a95" width="100%"></td>
-    <td align="center"><strong>매도</strong><br><img src="https://github.com/user-attachments/assets/4af0f24d-7dc9-4ed2-9e82-ace57602339c" width="100%"></td>
+    <td align="center"><strong>매수</strong><br><img src="https://github.com/user-attachments/assets/f2aa8e80-fe36-4f6d-9786-e5fd122d2a95" width="350"></td>
+    <td align="center"><strong>매도</strong><br><img src="https://github.com/user-attachments/assets/4af0f24d-7dc9-4ed2-9e82-ace57602339c" width="350"></td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><strong>포트폴리오</strong><br><img src="https://github.com/user-attachments/assets/4b7e6221-382b-457f-9c3c-5d8c2d398b2e" width="100%"></td>
+    <td colspan="2" align="center"><strong>포트폴리오</strong><br><img src="https://github.com/user-attachments/assets/4b7e6221-382b-457f-9c3c-5d8c2d398b2e" width="700"></td>
   </tr>
 </table>
 
