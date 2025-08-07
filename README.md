@@ -34,21 +34,23 @@
 
 ## 📱 주요 화면
 
-<details>
-<summary><strong>⚙️ 주요 기능 (클릭하여 펼치기)</strong></summary>
-<br>
-
-| 기능 | 설명 | 화면 |
-| :--: | :-- | :--: |
-| **대시보드** | 사용자의 자산 현황과 주요 지표를 한눈에 파악할 수 있는 메인 화면입니다. | <img src="https://github.com/user-attachments/assets/e12958a2-3049-40cb-90aa-9f7c922a4fc5" width="350"> |
-| **주식 목록** | 거래 가능한 전체 주식 목록을 시세와 함께 조회할 수 있습니다. | <img src="https://github.com/user-attachments/assets/90fd6a19-9c63-4aac-97c9-b0d8ff9bc320" width="350"> |
-| **주식 검색** | 종목명 또는 코드로 원하는 주식을 신속하게 검색하는 기능을 제공합니다. | <img src="https://github.com/user-attachments/assets/1e8fdcf4-8a69-463a-b008-b3ffb26dd452" width="350"> |
-| **주식 상세** | 특정 주식의 상세 정보, 차트, 관련 뉴스 등을 확인할 수 있습니다. | <img src="https://github.com/user-attachments/assets/23ca4bc7-6b2a-41c2-910d-ed46612e5220" width="350"> |
-| **매수** | 원하는 수량과 가격을 지정하여 주식을 매수하는 주문을 넣습니다. | <img src="https://github.com/user-attachments/assets/f2aa8e80-fe36-4f6d-9786-e5fd122d2a95" width="350"> |
-| **매도** | 보유한 주식을 지정된 수량과 가격으로 매도하는 주문을 넣습니다. | <img src="https://github.com/user-attachments/assets/4af0f24d-7dc9-4ed2-9e82-ace57602339c" width="350"> |
-| **포트폴리오** | 사용자가 보유한 주식들의 수익률과 자산 배분 현황을 분석하여 보여줍니다. | <img src="https://github.com/user-attachments/assets/4b7e6221-382b-457f-9c3c-5d8c2d398b2e" width="350"> |
-
-</details>
+<table align="center">
+  <tr>
+    <td align="center"><strong>대시보드</strong><br><img src="https://github.com/user-attachments/assets/e12958a2-3049-40cb-90aa-9f7c922a4fc5" width="350"></td>
+    <td align="center"><strong>주식 목록</strong><br><img src="https://github.com/user-attachments/assets/90fd6a19-9c63-4aac-97c9-b0d8ff9bc320" width="350"></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>주식 검색</strong><br><img src="https://github.com/user-attachments/assets/1e8fdcf4-8a69-463a-b008-b3ffb26dd452" width="350"></td>
+    <td align="center"><strong>주식 상세</strong><br><img src="https://github.com/user-attachments/assets/23ca4bc7-6b2a-41c2-910d-ed46612e5220" width="350"></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>매수</strong><br><img src="https://github.com/user-attachments/assets/f2aa8e80-fe36-4f6d-9786-e5fd122d2a95" width="350"></td>
+    <td align="center"><strong>매도</strong><br><img src="https://github.com/user-attachments/assets/4af0f24d-7dc9-4ed2-9e82-ace57602339c" width="350"></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><strong>포트폴리오</strong><br><img src="https://github.com/user-attachments/assets/4b7e6221-382b-457f-9c3c-5d8c2d398b2e" width="350"></td>
+  </tr>
+</table>
 
 ## 주요 API 엔드포인트
 
