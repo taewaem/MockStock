@@ -39,13 +39,16 @@
 
 ### 주식 목록  
 <img width="1899" height="909" alt="Image" src="https://github.com/user-attachments/assets/90fd6a19-9c63-4aac-97c9-b0d8ff9bc320" />
-### 주식 검색
-<img width="1903" height="896" alt="Image" src="https://github.com/user-attachments/assets/5014792a-eaf9-4fbd-a91f-999a0d60321a" />
 
-### 주식 상세 
-<img width="968" height="824" alt="Image" src="https://github.com/user-attachments/assets/af574804-d565-41e6-a23a-f5881ddd0fcc" />
+### 주식 검색
+<img width="1903" height="896" alt="Image" src="https://github.com/user-attachments/assets/1e8fdcf4-8a69-463a-b008-b3ffb26dd452" />
+
+### 주식 상세
+<img width="968" height="824" alt="Image" src="https://github.com/user-attachments/assets/23ca4bc7-6b2a-41c2-910d-ed46612e5220" />
+
 ### 매수
 <img width="440" height="394" alt="Image" src="https://github.com/user-attachments/assets/f2aa8e80-fe36-4f6d-9786-e5fd122d2a95" />
+
 ### 매도
 <img width="447" height="383" alt="Image" src="https://github.com/user-attachments/assets/4af0f24d-7dc9-4ed2-9e82-ace57602339c" />
 
